@@ -15,9 +15,11 @@ import ParallaxBand from './components/ParallaxBand.jsx'
 import Faq from './components/Faq.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import SequenceViewer from './components/SequenceViewer.jsx'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
+  const [showAnim, setShowAnim] = useState(false)
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -47,7 +49,7 @@ export default function App() {
       <div className="site-vignette" aria-hidden="true" />
       <Nav />
       <main>
-        <Hero ready={!loading} />
+        <Hero ready={!loading} onViewAnimation={() => setShowAnim(true)} />
         <About />
         <DayCarousel />
         <Services />
@@ -60,6 +62,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <SequenceViewer open={showAnim} onClose={() => setShowAnim(false)} />
     </>
   )
 }

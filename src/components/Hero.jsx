@@ -11,7 +11,7 @@ const SLIDES = [
 ]
 const DURATION = 6000
 
-export default function Hero({ ready }) {
+export default function Hero({ ready, onViewAnimation }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const [index, setIndex] = useState(0)
@@ -99,6 +99,15 @@ export default function Hero({ ready }) {
               >
                 See the work
               </a>
+              <button
+                onClick={onViewAnimation}
+                className="group inline-flex cursor-pointer items-center gap-2.5 rounded-full py-3 pr-2 pl-1 text-[0.95rem] font-semibold text-ivory transition-colors hover:text-gold-soft"
+              >
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-ivory/15 ring-1 ring-ivory/40 backdrop-blur-sm transition-colors group-hover:bg-gold-soft group-hover:text-ink">
+                  <svg viewBox="0 0 24 24" className="ml-0.5 h-3.5 w-3.5" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                View animation
+              </button>
             </div>
           </div>
         </motion.div>
