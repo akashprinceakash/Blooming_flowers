@@ -19,7 +19,7 @@ const ICONS = [
 
 export default function Why() {
   return (
-    <section className="bg-cream py-12 sm:py-14 lg:py-16" aria-labelledby="why-title">
+    <section className="bg-ivory py-6 md:bg-cream md:py-14 lg:py-16" aria-labelledby="why-title">
       <div className="container-x">
         <SectionHead
           index="06"
@@ -28,7 +28,19 @@ export default function Why() {
           text="The quiet, practical things that make the day run on time and look the way you imagined."
         />
 
-        <div className="mt-8 grid gap-px overflow-hidden rounded-md border border-wine/10 bg-wine/10 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3">
+        {/* phone: icon tiles */}
+        <ul className="mt-3 grid grid-cols-3 gap-2 md:hidden">
+          {WHY.map((w, i) => (
+            <li key={w.title} className="flex flex-col items-center gap-2 rounded-xl border border-wine/10 bg-white/60 px-1.5 py-3.5 text-center">
+              <svg viewBox="0 0 24 24" className="h-6 w-6 text-wine" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                {ICONS[i]}
+              </svg>
+              <span className="text-[0.9rem] leading-tight font-semibold text-ink">{w.title}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 hidden gap-px overflow-hidden rounded-md border border-wine/10 bg-wine/10 md:grid md:grid-cols-2 lg:mt-8 lg:grid-cols-3">
           {WHY.map((w, i) => (
             <motion.article
               key={w.title}

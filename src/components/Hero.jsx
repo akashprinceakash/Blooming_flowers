@@ -41,7 +41,7 @@ export default function Hero({ ready }) {
       aria-label="Featured weddings"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      className="relative h-[100svh] min-h-[560px] overflow-hidden bg-ink text-ivory"
+      className="relative h-[72svh] min-h-[460px] overflow-hidden bg-ink text-ivory md:h-[100svh] md:min-h-[560px]"
     >
       {/* slides — no blur, no zoom; only a gentle scroll parallax */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
@@ -65,14 +65,14 @@ export default function Hero({ ready }) {
       <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-ink/90 via-ink/50 to-transparent" />
 
       {/* text — bottom aligned */}
-      <div className="container-x relative z-10 flex h-full flex-col justify-end pb-24 sm:pb-24">
+      <div className="container-x relative z-10 flex h-full flex-col justify-end pb-16 md:pb-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={ready ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
-          className="grid items-end gap-6 lg:grid-cols-12"
+          className="grid items-end gap-4 md:gap-6 lg:grid-cols-12"
         >
-          <h1 className="font-display text-[clamp(2.5rem,5.2vw,4.6rem)] leading-[0.98] font-light lg:col-span-7">
+          <h1 className="font-display text-[clamp(2.3rem,5.2vw,4.6rem)] leading-[0.98] font-normal md:font-light lg:col-span-7">
             Let your
             <br />
             wedding <em className="text-gold-soft italic">bloom</em>
@@ -80,10 +80,10 @@ export default function Hero({ ready }) {
             around you
           </h1>
           <div className="lg:col-span-4 lg:col-start-9 lg:pb-2">
-            <p className="max-w-sm text-[0.95rem] leading-relaxed font-light text-ivory/85">
+            <p className="max-w-sm text-[1rem] leading-snug text-ivory/90 md:leading-relaxed">
               Wedding décor &amp; floral design across Bengaluru, South India and Goa — since 2013.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-4 flex flex-wrap gap-3 md:mt-5">
               <a
                 href="#contact"
                 onClick={jump('#contact')}
@@ -106,7 +106,7 @@ export default function Hero({ ready }) {
 
       {/* controls */}
       <div className="absolute inset-x-0 bottom-0 z-10">
-        <div className="container-x flex items-center justify-between gap-4 pb-5">
+        <div className="container-x flex items-center justify-center gap-4 pb-4 md:justify-between md:pb-5">
           <div className="flex gap-2">
             {SLIDES.map((s, i) => (
               <button
@@ -130,7 +130,7 @@ export default function Hero({ ready }) {
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
             <button onClick={() => go(index - 1)} aria-label="Previous slide" className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-ivory/40 transition-colors hover:bg-ivory hover:text-ink">
               <Arrow className="h-4 w-4 rotate-180" />
             </button>

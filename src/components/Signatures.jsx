@@ -59,14 +59,38 @@ export default function Signatures() {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   return (
-    <section className="bg-ivory py-12 sm:py-14 lg:py-16">
+    <section className="bg-ivory py-6 md:py-14 lg:py-16">
       <div className="container-x">
         <SectionHead
           label="Best sellers"
           title={<>Four setups families <em className="text-wine italic">keep asking for.</em></>}
           text="Each one a starting point we tailor to your colours, rituals and space."
         />
-        <div ref={ref} className="relative mt-8 flex flex-col gap-[8vh]">
+        {/* phone: 2x2 grid */}
+        <ul className="mt-3 grid grid-cols-2 gap-2.5 md:hidden">
+          {SIGNATURES.map((s) => (
+            <li key={s.title}>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToId('#contact')
+                }}
+                className="block overflow-hidden rounded-xl bg-cream shadow-[0_8px_20px_-14px_rgba(42,14,20,0.45)]"
+              >
+                <img src={s.image} alt={`${s.title} setup`} loading="lazy" className="aspect-[16/10] w-full object-cover" />
+                <span className="flex items-center justify-between px-3 py-2.5">
+                  <span className="text-[1.05rem] font-semibold text-ink">{s.title}</span>
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-ivory">
+                    <Arrow className="h-3.5 w-3.5" />
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div ref={ref} className="relative mt-8 hidden flex-col gap-[8vh] md:flex">
           {SIGNATURES.map((s, i) => (
             <Card key={s.title} s={s} i={i} total={SIGNATURES.length} progress={scrollYProgress} />
           ))}

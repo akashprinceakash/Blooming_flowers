@@ -12,7 +12,18 @@ export default function ParallaxBand() {
   const textY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [50, -50])
 
   return (
-    <section ref={ref} aria-label="Our promise" className="relative h-[70svh] min-h-[460px] overflow-hidden bg-ink text-ivory">
+    <>
+    {/* phone: compact strip */}
+    <section aria-label="Our promise" className="relative overflow-hidden bg-wine text-ivory md:hidden">
+      <img src="/images/banner-lantern-garden.webp" alt="" loading="lazy" className="absolute inset-y-0 right-0 h-full w-[60%] object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-r from-wine via-wine/85 to-wine/20" />
+      <div className="relative px-4 py-6">
+        <h2 className="font-display text-[1.75rem] leading-tight font-semibold">Our promise</h2>
+        <p className="mt-1 max-w-[15rem] text-[1rem] leading-snug text-ivory/85">Fresh flowers. Honest quotes. Early mornings.</p>
+      </div>
+    </section>
+
+    <section ref={ref} aria-label="Our promise" className="relative hidden h-[70svh] min-h-[460px] overflow-hidden bg-ink text-ivory md:block">
       <motion.div style={{ y: bgY }} className="absolute inset-[-16%_0]">
         <img src="/images/banner-lantern-garden.webp" alt="" loading="lazy" className="h-full w-full object-cover" />
       </motion.div>
@@ -40,5 +51,6 @@ export default function ParallaxBand() {
         </p>
       </motion.div>
     </section>
+    </>
   )
 }

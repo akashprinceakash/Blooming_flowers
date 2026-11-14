@@ -1,13 +1,46 @@
 import { motion } from 'framer-motion'
 import { PRICING } from '../data.js'
 import { scrollToId } from './Nav.jsx'
-import { Arrow, EASE, SectionHead } from './ui.jsx'
+import { Arrow, EASE, MobileHead, SectionHead } from './ui.jsx'
 
 export default function Pricing() {
   return (
-    <section className="relative bg-cream py-12 sm:py-14 lg:py-16" aria-labelledby="price-title">
+    <section className="relative bg-wine py-6 text-ivory md:bg-cream md:py-14 md:text-ink lg:py-16" aria-labelledby="price-title">
       <div className="container-x">
+        {/* phone: compact price cards */}
+        <div className="md:hidden">
+          <MobileHead light label="Investment" title="Honest, itemised pricing." />
+          <ul className="mt-3 grid grid-cols-3 gap-2">
+            {PRICING.map((p) => (
+              <li key={p.label}>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToId('#contact')
+                  }}
+                  className={`relative flex h-full flex-col items-center rounded-xl border px-1.5 pt-4 pb-3 text-center ${
+                    p.featured ? 'border-gold-soft bg-ink/40' : 'border-ivory/20 bg-ink/25'
+                  }`}
+                >
+                  {p.featured && (
+                    <span className="absolute -top-2.5 rounded-full bg-gold-soft px-2 py-0.5 text-[0.62rem] font-semibold whitespace-nowrap text-ink">Most booked</span>
+                  )}
+                  <span className="text-[1.05rem] leading-tight font-semibold">{p.label}</span>
+                  <span className="mt-1 text-[0.72rem] text-ivory/65">{p.range.split(' ₹')[0]}</span>
+                  <span className="text-[1rem] font-semibold text-gold-soft">₹{p.range.split('₹')[1]}</span>
+                  <span className="mt-2 grid h-7 w-7 place-items-center rounded-full border border-gold-soft/60 text-gold-soft">
+                    <Arrow className="h-3.5 w-3.5" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="hidden md:block">
         <SectionHead
+          mobile={false}
           label="Investment"
           title={<>Honest, <em className="text-wine italic">itemised pricing.</em></>}
           text="Every quote is broken down by function. Ranges are a guide — your final quote depends on venue, scale and flowers."
@@ -61,6 +94,7 @@ export default function Pricing() {
               </a>
             </motion.article>
           ))}
+        </div>
         </div>
       </div>
     </section>

@@ -180,9 +180,23 @@ export function Magnetic({ children, className = '', href, onClick, ariaLabel, t
 }
 
 /** Consistent section header used across the site. */
-export function SectionHead({ index, label, title, text, light = false, center = false, className = '' }) {
+/** Compact heading used on phones: bold label + one-line plain subtitle. */
+export function MobileHead({ label, title, light = false, className = '' }) {
   return (
-    <div className={`${center ? 'mx-auto flex max-w-2xl flex-col items-center text-center' : 'grid gap-6 lg:grid-cols-12 lg:items-end'} ${className}`}>
+    <div className={`md:hidden ${className}`}>
+      <h2 className={`font-display text-[1.75rem] leading-tight font-semibold ${light ? 'text-ivory' : 'text-ink'}`}>{label}</h2>
+      {title && (
+        <p className={`mt-0.5 text-[0.98rem] [&_em]:text-inherit [&_em]:not-italic ${light ? 'text-ivory/75' : 'text-muted'}`}>{title}</p>
+      )}
+    </div>
+  )
+}
+
+export function SectionHead({ index, label, title, text, light = false, center = false, className = '', mobile = true }) {
+  return (
+    <>
+    {mobile && <MobileHead label={label} title={title} light={light} />}
+    <div className={`hidden md:grid ${center ? 'mx-auto max-w-2xl justify-items-center text-center' : 'gap-6 lg:grid-cols-12 lg:items-end'} ${className}`}>
       <div className={center ? '' : 'lg:col-span-8'}>
         <Reveal>
           <div className={center ? 'flex justify-center' : ''}>
@@ -199,6 +213,7 @@ export function SectionHead({ index, label, title, text, light = false, center =
         </Reveal>
       )}
     </div>
+    </>
   )
 }
 
